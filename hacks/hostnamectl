@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+>&2 echo "WARNING! I'm a dummy script to set the hostname inside a container!"
+
+if [ "$1" = "set-hostname" -a "$2" = "--static" ] ; then
+	echo "$3" > /etc/hostname
+	hostname "$3"
+else
+	hostname
+fi

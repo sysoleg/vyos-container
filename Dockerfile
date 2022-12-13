@@ -16,4 +16,5 @@ RUN cd rootfs && \
 
 FROM scratch
 COPY --from=builder rootfs ./
+COPY hacks/hostnamectl /usr/local/bin
 CMD ["/sbin/init"]
