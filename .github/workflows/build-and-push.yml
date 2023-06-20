@@ -57,3 +57,12 @@ jobs:
           keep: 5
           names: |
             ${{ env.REPOSITORY_NAME }}
+
+      - name: Delete old images
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: ${{ env.REPOSITORY_NAME }}
+          cut-off: One week ago UTC
+          keep-at-least: 1
+          account-type: personal
+          token: ${{ secrets.GITHUB_TOKEN }}
