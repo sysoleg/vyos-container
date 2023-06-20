@@ -15,3 +15,8 @@ docker build -t sysoleg/vyos-container:latest .
 ```
 docker run -d --name vyos --privileged -v /lib/modules:/lib/modules sysoleg/vyos-container:latest
 ```
+
+### Logging in
+```
+docker exec -it vyos su vyos
+```
