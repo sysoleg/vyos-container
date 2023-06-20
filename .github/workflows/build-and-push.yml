@@ -49,15 +49,6 @@ jobs:
       - name: Get repository name
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
-      - name: Delete old versions of package
-        uses: smartsquaregmbh/delete-old-packages@v0.7.0
-        with:
-          type: container
-          user: ${{ github.actor }}
-          keep: 5
-          names: |
-            ${{ env.REPOSITORY_NAME }}
-
       - name: Delete old images
         uses: snok/container-retention-policy@v2
         with:
