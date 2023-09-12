@@ -3,7 +3,7 @@ FROM ubuntu:latest AS builder
 RUN apt update && apt install -y wget p7zip-full squashfs-tools
 
 RUN wget -qO latest_build.txt https://raw.githubusercontent.com/vyos/vyos-rolling-nightly-builds/main/latest_build.txt && \
-wget -qO out.iso https://github.com/vyos/vyos-rolling-nightly-builds/releases/download/1.4-rolling-$(cat latest_build.txt)/vyos-1.4-rolling-$(cat latest_build.txt)-amd64.iso
+wget -qO out.iso https://github.com/vyos/vyos-rolling-nightly-builds/releases/download/1.5-rolling-$(cat latest_build.txt)/vyos-1.5-rolling-$(cat latest_build.txt)-amd64.iso
 
 RUN mkdir rootfs && 7z e out.iso filesystem.squashfs -r && \
 	unsquashfs -f -d rootfs/ filesystem.squashfs
