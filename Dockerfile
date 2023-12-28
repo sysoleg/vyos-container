@@ -2,7 +2,7 @@ FROM ubuntu:latest AS builder
 
 RUN apt update && apt install -y wget p7zip-full squashfs-tools jq
 
-RUN wget $(wget -qO - https://raw.githubusercontent.com/vyos/vyos-rolling-nightly-builds/main/version.json | jq -r '.[].url' | sed -E 's/(.*)1\.5/\1vyos-1.5/')
+RUN wget -qO out.iso $(wget -qO - https://raw.githubusercontent.com/vyos/vyos-rolling-nightly-builds/main/version.json | jq -r '.[].url' | sed -E 's/(.*)1\.5/\1vyos-1.5/')
 
 RUN mkdir rootfs && 7z e out.iso filesystem.squashfs -r && \
 	unsquashfs -f -d rootfs/ filesystem.squashfs
